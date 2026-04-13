@@ -1,70 +1,203 @@
-# Getting Started with Create React App
+# 🌆 CitiCare – Smart Civic Issue Reporting System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+🚀 A full-stack **MERN-based civic complaint management platform** that empowers citizens, officers, and administrators to collaborate for faster and more transparent issue resolution.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🌐 Live Demo
 
-### `npm start`
+👉 https://anonymous8528.github.io/citi-care-/
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📌 Overview
 
-### `npm test`
+CitiCare is a modern web application designed to digitize and streamline municipal issue reporting. Citizens can report problems like garbage, road damage, or water leakage, while officers manage and resolve them efficiently under admin supervision.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🧠 Key Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 👤 Citizen
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* 📝 Report issues with **description, photo, and live location**
+* 📍 Automatic **geolocation tracking**
+* 📊 Track issue **status and progress**
+* 🧾 View personal issue history
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 🛠️ Officer
 
-### `npm run eject`
+* 📋 View **assigned issues**
+* 🔄 Update **status & progress**
+* ✅ Mark issues as resolved
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 🧑‍💼 Admin
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* 👥 Manage users (Citizen ↔ Officer)
+* 📌 Assign officers to issues
+* 📊 Monitor all reports
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🏗️ Tech Stack
 
-## Learn More
+### Frontend
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* ⚛️ React.js
+* 🎨 Custom CSS (Modern UI)
+* 🔁 React Router DOM
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Backend
 
-### Code Splitting
+* 🟢 Node.js
+* 🚀 Express.js
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Database
 
-### Analyzing the Bundle Size
+* 🍃 MongoDB Atlas
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Other Integrations
 
-### Making a Progressive Web App
+* 🔐 JWT Authentication
+* ☁️ Cloudinary (Image Upload)
+* 📍 Geolocation API
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## 📂 Project Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```
+citi-care-/
+│
+├── client/          # React Frontend
+│   ├── src/
+│   │   ├── pages/
+│   │   ├── components/
+│   │   └── api/
+│
+├── backend/         # Node + Express Backend
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   └── middleware/
+```
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## ⚙️ Installation & Setup
 
-### `npm run build` fails to minify
+### 1️⃣ Clone the repository
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+git clone https://github.com/anonymous8528/citi-care-.git
+cd citi-care-
+```
+
+---
+
+### 2️⃣ Setup Backend
+
+```bash
+cd backend
+npm install
+```
+
+Create `.env` file:
+
+```env
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_secret
+CLOUDINARY_CLOUD_NAME=your_name
+CLOUDINARY_API_KEY=your_key
+CLOUDINARY_API_SECRET=your_secret
+```
+
+Run backend:
+
+```bash
+npm run dev
+```
+
+---
+
+### 3️⃣ Setup Frontend
+
+```bash
+cd client
+npm install
+npm start
+```
+
+---
+
+## 🚀 Deployment
+
+### GitHub Pages (Frontend)
+
+```bash
+npm run deploy
+```
+
+---
+
+## 🔐 Authentication Flow
+
+* User registers/login
+* JWT token generated
+* Token stored in localStorage
+* Protected routes via middleware
+---
+
+## 🧩 Role-Based Access
+
+| Role    | Permissions                  |
+| ------- | ---------------------------- |
+| Citizen | Report & track issues        |
+| Officer | Manage assigned issues       |
+| Admin   | Manage users & assign issues |
+
+---
+
+## 💡 Future Improvements
+
+* 🔔 Real-time notifications
+* 📱 Mobile app version
+* 🗺️ Map-based issue visualization
+* 📊 Analytics dashboard for admins
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!
+
+```bash
+fork → clone → create branch → commit → push → PR
+```
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License.
+
+---
+
+## 👨‍💻 Author
+
+**Anuj Chaudhary**
+
+* GitHub: https://github.com/anonymous8528
+
+---
+
+## ⭐ Show Your Support
+
+If you like this project:
+
+👉 Give it a ⭐ on GitHub
+👉 Share it with others
+
+---
+
+💙 *Built with passion to improve smart city systems*
