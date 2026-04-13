@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-
 import API from "../api/axiosInstance";
+import { useNavigate } from "react-router-dom";
 
 
 function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -20,7 +21,7 @@ function Login() {
       localStorage.setItem("user", JSON.stringify(res.data.user));
 
       alert("Login successful ✅");
-      window.location.href = "/";
+      navigate("/");
     } catch (err) {
       alert(err.response?.data?.message || "Login failed ❌");
     }

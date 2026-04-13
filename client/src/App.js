@@ -24,6 +24,7 @@ function App() {
         <Route path="/assigned-issues" element={<AssignedIssues />} />
         <Route path="/manage-users" element={<ManageUsers />} />
         <Route path="/all-issues" element={<AllIssues />} />
+        <Route path="*" element={<Home />} />
       </Routes>
     </BrowserRouter>
   );
