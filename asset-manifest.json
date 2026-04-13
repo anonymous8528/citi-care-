@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/citi-care-/static/css/main.0b4a6e53.css",
-    "main.js": "/citi-care-/static/js/main.abfce4dd.js",
+    "main.js": "/citi-care-/static/js/main.d70f8ec1.js",
     "index.html": "/citi-care-/index.html",
     "main.0b4a6e53.css.map": "/citi-care-/static/css/main.0b4a6e53.css.map",
-    "main.abfce4dd.js.map": "/citi-care-/static/js/main.abfce4dd.js.map"
+    "main.d70f8ec1.js.map": "/citi-care-/static/js/main.d70f8ec1.js.map"
   },
   "entrypoints": [
     "static/css/main.0b4a6e53.css",
-    "static/js/main.abfce4dd.js"
+    "static/js/main.d70f8ec1.js"
   ]
 }
