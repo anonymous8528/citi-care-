@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -12,7 +12,7 @@ import AllIssues from "./pages/AllIssues";
 
 function App() {
   return (
-    <BrowserRouter basename="/citi-care-">
+    <HashRouter>
       <Navbar />
 
       <Routes>
@@ -26,7 +26,7 @@ function App() {
         <Route path="/all-issues" element={<AllIssues />} />
         <Route path="*" element={<Home />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
