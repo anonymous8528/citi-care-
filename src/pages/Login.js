@@ -1,47 +1,56 @@
 import React, { useState } from "react";
 
-function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+import API from "../api/axiosInstance";
 
-  function handleLogin(e) {
+
+function Login() {
+  const [form, setForm] = useState({ email: "", password: "" });
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const login = async (e) => {
     e.preventDefault();
-    alert("Login Successful!");
-  }
+
+    try {
+      const res = await API.post("/auth/login", form);
+
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+
+      alert("Login successful ✅");
+      window.location.href = "/";
+    } catch (err) {
+      alert(err.response?.data?.message || "Login failed ❌");
+    }
+  };
 
   return (
-    <div className="page">
-      <div className="card">
-        <h3>Login</h3>
+    <div style={styles.container}>
+      <form onSubmit={login} style={styles.card}>
+        <h2>Login</h2>
 
-        <form onSubmit={handleLogin}>
-          <div className="form-group">
-            <label>Email</label>
-            <input 
-              type="email"
-              placeholder="Enter email"
-              value={email}
-              onChange={(e)=>setEmail(e.target.value)}
-              required
-            />
-          </div>
+        <input name="email" placeholder="Email" onChange={handleChange} required />
+        <input name="password" type="password" placeholder="Password" onChange={handleChange} required />
 
-          <div className="form-group">
-            <label>Password</label>
-            <input 
-              type="password"
-              placeholder="Enter password"
-              value={password}
-              onChange={(e)=>setPassword(e.target.value)}
-              required
-            />
-          </div>
-
-          <button className="btn">Login</button>
-        </form>
-      </div>
+        <button type="submit">Login</button>
+      </form>
     </div>
   );
 }
+
+const styles = {
+  container: { display: "flex", justifyContent: "center", alignItems: "center", height: "80vh" },
+  card: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "12px",
+    padding: "25px",
+    width: "300px",
+    borderRadius: "10px",
+    boxShadow: "0 0 10px rgba(0,0,0,0.1)"
+  }
+};
 
 export default Login;

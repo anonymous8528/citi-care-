@@ -1,47 +1,78 @@
 import React, { useEffect, useState } from "react";
+import API from "../api/axiosInstance";
 
 function IssueList() {
   const [issues, setIssues] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const savedIssues = JSON.parse(localStorage.getItem("issues")) || [];
-    setIssues(savedIssues);
+    fetchIssues();
   }, []);
+
+  async function fetchIssues() {
+    try {
+      const token = localStorage.getItem("token");
+
+      const res = await API.get("/issues", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      console.log("Fetched issues:", res.data);
+      setIssues(res.data);
+    } catch (error) {
+      console.log("Issue list error:", error);
+      console.log("Issue list response:", error.response?.data);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  if (loading) {
+    return <h2 style={{ textAlign: "center", marginTop: "30px" }}>Loading...</h2>;
+  }
 
   return (
     <div className="page">
-      <h3>Reported Issues</h3>
+      <div className="card">
+        <h2>Reported Issues</h2>
 
-      {issues.length === 0 ? (
-        <p>No issues reported yet.</p>
-      ) : (
-        issues.map((issue, index) => (
-          <div className="issue-item" key={index}>
-            <div className="issue-title">{issue.issueType}</div>
+        {issues.length === 0 ? (
+          <p>No issues found.</p>
+        ) : (
+          <div className="issue-list">
+            {issues.map((issue) => (
+              <div key={issue._id} className="issue-item">
+                <h3>{issue.issueType}</h3>
+                <p><strong>Name:</strong> {issue.name}</p>
+                <p><strong>Area:</strong> {issue.area}</p>
+                <p><strong>Description:</strong> {issue.description}</p>
+                <p><strong>Date:</strong> {issue.date}</p>
+                <p>
+                  <strong>Location:</strong>{" "}
+                  {issue.location?.lat && issue.location?.lng
+                    ? `${issue.location.lat}, ${issue.location.lng}`
+                    : "Not provided"}
+                </p>
 
-            <div className="issue-info">Name: {issue.name}</div>
-            <div className="issue-info">Area: {issue.area}</div>
-            <div className="issue-info">Date: {issue.date}</div>
-            <div className="issue-info">Description: {issue.description}</div>
-
-            {issue.location && (
-              <div className="issue-info">Location: {issue.location}</div>
-            )}
-
-            {issue.photo && (
-              <img
-                src={issue.photo}
-                alt="Uploaded"
-                style={{
-                  width: "30%",
-                  marginTop: "10px",
-                  borderRadius: "8px",
-                }}
-              />
-            )}
+                {issue.photo && (
+                  <img
+                    src={issue.photo}
+                    alt="Issue"
+                    style={{
+                      width: "100%",
+                      maxWidth: "300px",
+                      borderRadius: "10px",
+                      marginTop: "10px",
+                    }}
+                  />
+                )}
+              </div>
+            ))}
           </div>
-        ))
-      )}
+        )}
+      </div>
     </div>
   );
 }
